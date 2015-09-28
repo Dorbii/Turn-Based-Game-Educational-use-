@@ -1,0 +1,806 @@
+import java.awt.*;
+import java.awt.event.KeyEvent;
+import java.applet.*;
+import java.net.*;
+
+
+public class ElementalBattle
+{
+   //These are all the variables needed for gameplay. We make them public in order to subject them to change. We have values for the player and the computer.
+   public static int startHP;
+   public static int startMana; 
+   public static int attackOne;
+   public static int manaOne; 
+   public static int attackTwo;
+   public static int manaTwo;
+   public static int attackThree;
+   public static int manaThree;
+   public static int attackFour; 
+   public static int manaFour;
+   public static int fatigueAttack;
+   public static int compstartHP;
+   public static int compstartMana; 
+   public static int compattackOne;
+   public static int compmanaOne; 
+   public static int compattackTwo;
+   public static int compmanaTwo;
+   public static int compattackThree;
+   public static int compmanaThree;
+   public static int compattackFour; 
+   public static int compmanaFour;
+   public static int compfatigueAttack;
+   public static int switchtogame = 0;
+   public static String user;
+   public static String bot;
+  
+  // Calls players or comps variables for the selected match up. 
+  
+  //fire values for both player and comp.
+   static void fire(String player)
+   {
+      if(player.equals("player")) 
+      {
+         startHP = 90;
+         startMana = 160; 
+         attackOne = (int)(Math.random()*(1-5) + 5);
+         manaOne = 10; 
+         attackTwo = (int)(Math.random()*(10-15) + 15);
+         manaTwo = 15;
+         attackThree = (int)(Math.random()*(20-25) + 25);
+         manaThree = 20;
+         attackFour = (int)(Math.random()*(15-80) + 80); 
+         manaFour = 80;
+         fatigueAttack = 1;
+         user = "fire";
+      }
+      else if(player.equals("comp"))
+      {
+         compstartHP = 90;
+         compstartMana = 160; 
+         compattackOne = (int)(Math.random()*(1-5) + 5);
+         compmanaOne = 10; 
+         compattackTwo = (int)(Math.random()*(10-15) + 15);
+         compmanaTwo = 15;
+         compattackThree = (int)(Math.random()*(20-25) + 25);
+         compmanaThree = 20;
+         compattackFour = (int)(Math.random()*(15-80) + 80); 
+         compmanaFour = 80;
+         compfatigueAttack = 1;
+         bot = "fire";
+      }
+   }
+   //earth values for both player and comp.
+   static void earth(String player)
+   {
+     if(player.equals("player"))
+     {
+         startHP = 160;
+         startMana = 100; 
+         attackOne = 5; 
+         manaOne =(int)(Math.random()*(1-10) + 10);
+         attackTwo = 15;
+         manaTwo = (int)(Math.random()*(5-20) + 20); 
+         attackThree = 20;
+         manaThree = (int)(Math.random()*(10-20) + 20); 
+         attackFour = 25;
+         manaFour = (int)(Math.random()*(10-30) + 30); 
+         fatigueAttack = 1;
+         user = "earth";
+     }
+     else if(player.equals("comp"))
+     {
+         compstartHP = 160;
+         compstartMana = 100; 
+         compattackOne = 5; 
+         compmanaOne =(int)(Math.random()*(1-10) + 10);
+         compattackTwo = 15;
+         compmanaTwo = (int)(Math.random()*(5-20) + 20); 
+         compattackThree = 20;
+         compmanaThree = (int)(Math.random()*(10-20) + 20); 
+         compattackFour = 25;
+         compmanaFour = (int)(Math.random()*(10-30) + 30); 
+         compfatigueAttack = 1;
+         bot = "earth";
+     }
+   }
+   //waters values for both player and comp.
+   static void water(String player) 
+   {
+      if(player.equals("player"))
+      {
+         startHP = 100;
+         startMana = 150; 
+         attackOne = (int)(Math.random()*(1-15) + 15);  
+         manaOne = 10;
+         attackTwo = (int)(Math.random()*(15-35) + 35);
+         manaTwo = 20;
+         attackThree = (int)(Math.random()*(20-25) + 25);
+         manaThree = 20;
+         attackFour = (int)(Math.random()*(25-30) + 30);
+         manaFour = 25;
+         fatigueAttack = 1;
+         user = "water";
+      }
+      else if(player.equals("comp"))
+      {
+         compstartHP = 100;
+         compstartMana = 150; 
+         compattackOne = (int)(Math.random()*(1-15) + 15);  
+         compmanaOne = 10;
+         compattackTwo = (int)(Math.random()*(15-35) + 35);
+         compmanaTwo = 20;
+         compattackThree = (int)(Math.random()*(20-25) + 25);
+         compmanaThree = 20;
+         compattackFour = (int)(Math.random()*(25-30) + 30);
+         compmanaFour = 25;
+         compfatigueAttack = 1;
+         bot = "water";
+      }
+   }
+   //air values for both player and comp.
+   static void air(String player)
+   {
+      if(player.equals("player"))
+      {
+         startHP = 130;
+         startMana = 120; 
+         attackOne = (int)(Math.random()*(5-10) + 10); 
+         manaOne = 5; 
+         attackTwo = (int)(Math.random()*(5-20) + 20);
+         manaTwo = 10;
+         attackThree = (int)(Math.random()*(30-40) + 40);
+         manaThree = 40;
+         attackFour = 15; 
+         manaFour = 20;
+         fatigueAttack = 1;
+         user = "air";
+      }
+      else if(player.equals("comp"))
+      {
+         compstartHP = 130;
+         compstartMana = 120; 
+         compattackOne = (int)(Math.random()*(5-10) + 10); 
+         compmanaOne = 5; 
+         compattackTwo = (int)(Math.random()*(5-20) + 20);
+         compmanaTwo = 10;
+         compattackThree = (int)(Math.random()*(30-40) + 40);
+         compmanaThree = 40;
+         compattackFour = 15; 
+         compmanaFour = 20;
+         compfatigueAttack = 1;
+         bot = "air";
+      }
+   }
+   
+        //Instructions page.
+   static void instructions()
+   {
+      StdDraw.clear();
+      StdDraw.picture(0.8, 0.524, "/Instructions.png");
+      StdDraw.show();
+      while (switchtogame == 0) 
+      {
+         if (StdDraw.isKeyPressed(KeyEvent.VK_ESCAPE)) 
+         {
+            StdDraw.clear();
+            characterSelect();
+         }
+      } 
+   }
+   //Plays an audio clip. This can be changed in order to loop while the game is playing, or you can have it set as I do. This will be considered extra to the actual game.
+    public static void extraCredit()
+   {
+      StdDraw.clear();
+      //gets the audio clip that is to be played.
+      URL song = StdAudio.class.getResource("song.wav");
+      AudioClip clip = Applet.newAudioClip(song);
+      clip.play();
+      //creates an array of ten 
+      double[] x = new double [10];
+      for (int i=0; i<x.length; i++)
+      {
+         x[i] = Math.random()* (.6 - .3)+.6;
+      }
+      double[] y = new double [10];
+      for (int i=0; i<y.length; i++)
+      {
+         y[i] = Math.random()* (.6 - .3)+.6;
+      }
+      double faceSize = 0.05;
+      
+     double[] dx = new double [10];
+      for (int i=0; i<dx.length; i++)
+      {
+         dx[i] =  Math.random() / (5 * 24);
+      }
+      
+      double[] dy = new double [10];
+      for (int i=0; i<dy.length; i++)
+      {
+         dy[i] =  Math.random() / (5 * 24);
+      }
+      
+      while (true)
+      {  
+        //draws the image for extracredit section and has the faces bounce off the walls
+         StdDraw.clear();
+         StdDraw.picture(.5, .5, "/Background.png");
+         for (int i=0; i<=9; i++)
+         {
+         StdDraw.picture(x[i], y[i], "/test.png");
+         x[i] = x[i] + dx[i];
+         y[i] = y[i] + dy[i];
+         
+         if (x[i] > 1 - faceSize || x[i] < faceSize)
+            dx[i] = dx[i] * -1;
+                        
+         if (y[i] > 1 - faceSize || y[i] < faceSize)
+            dy[i] = dy[i] * -1; 
+            
+         }                             
+         StdDraw.show(1000 / 24);  
+         //Lets you go to character select
+         if (StdDraw.isKeyPressed(KeyEvent.VK_ESCAPE)) 
+         {
+            clip.stop();
+            break; 
+         }
+      }
+      StdDraw.clear();
+      startMenu(); 
+   }
+                
+   //This lets you pick instructions or your elemental. 
+   static void startMenu()
+   {
+      StdDraw.clear();
+      StdDraw.picture(0.5, 0.5, "/StartScreen.png");
+      StdDraw.show();
+      while (switchtogame == 0)
+      {
+         if (StdDraw.isKeyPressed(KeyEvent.VK_1))
+         {
+            characterSelect();         
+         }
+         if (StdDraw.isKeyPressed(KeyEvent.VK_2))
+         {
+            instructions(); 
+         }
+         if (StdDraw.isKeyPressed(KeyEvent.VK_3))
+         {
+            extraCredit();
+         }
+      }
+   }
+   
+   //Switch back and fourth between elementals until you pick the one you want.
+   //Escape key restarts the loop in order to bring you back to characterselect
+   //if enter is pressed calls the specific method so the public values are set
+   static void characterSelect()
+   {
+      StdDraw.clear();
+      StdDraw.picture(0.5, 0.5, "/CharacterSelect.png");
+      
+      while (switchtogame == 0)
+      {
+         if (StdDraw.isKeyPressed(KeyEvent.VK_F))
+         {
+            StdDraw.clear();
+            StdDraw.picture(0.5, 0.5, "/FirePick.png"); 
+           
+            while (true)
+               if (StdDraw.isKeyPressed(KeyEvent.VK_ESCAPE)) 
+               {
+                  characterSelect();
+                  break;
+               }
+               else if (StdDraw.isKeyPressed(KeyEvent.VK_ENTER)) 
+               {
+               
+                  fire("player");
+                  water("comp"); 
+                  StdDraw.clear();
+                  StdDraw.picture(0.5, 0.5, "/FireFight.png"); 
+                  switchtogame = 1; 
+                  break; 
+               }
+         }
+         if (StdDraw.isKeyPressed(KeyEvent.VK_E))
+         {
+            StdDraw.clear();
+            StdDraw.picture(0.5, 0.5, "/EarthPick.png");
+            
+            while (true)
+               if (StdDraw.isKeyPressed(KeyEvent.VK_ESCAPE)) 
+               {
+                  characterSelect();
+                  break;
+               }
+               else if (StdDraw.isKeyPressed(KeyEvent.VK_ENTER)) 
+               {
+                  earth("player");
+                  fire("comp"); 
+                  StdDraw.clear();
+                  StdDraw.picture(0.5, 0.5, "/EarthFight.png");
+                  switchtogame = 1; 
+                  break; 
+               }
+         
+         }
+         if (StdDraw.isKeyPressed(KeyEvent.VK_A))
+         {
+            StdDraw.clear();
+            StdDraw.picture(0.5, 0.5, "/AirPick.png");
+            
+            while (true)
+               if (StdDraw.isKeyPressed(KeyEvent.VK_ESCAPE)) 
+               {
+                  characterSelect();
+                  break;
+               }
+               else if (StdDraw.isKeyPressed(KeyEvent.VK_ENTER)) 
+               {
+                  air("player");
+                  earth("comp"); 
+                  StdDraw.clear();
+                  StdDraw.picture(0.5, 0.5, "/AirFight.png");  
+                  switchtogame = 1; 
+                  break;
+               }
+            
+         
+         }
+         if (StdDraw.isKeyPressed(KeyEvent.VK_W))
+         {
+            StdDraw.clear();
+            StdDraw.picture(0.5, 0.5, "/WaterPick.png");
+            
+            while (true)
+               if (StdDraw.isKeyPressed(KeyEvent.VK_ESCAPE)) 
+               {
+                  characterSelect();
+                  break;
+               }
+               else if (StdDraw.isKeyPressed(KeyEvent.VK_ENTER)) 
+               {
+                  water("player");
+                  air("comp");  
+                  StdDraw.clear();
+                  StdDraw.picture(0.5, 0.5, "/WaterFight.png");
+                  switchtogame = 1; 
+                  break;     
+               }
+         }
+      } 
+   } 
+   //assigns the method based on the selection picked in character selection
+   //creates the abilites for the given elemental
+   static void playersTurn()
+   {
+      while (true)
+      {
+         if (user.equals("water"))
+         {
+            
+            if (StdDraw.isKeyPressed(KeyEvent.VK_1) && startMana >= 10)
+            {
+               startHP = startHP + attackOne;
+               attackOne = (int)(Math.random()*(1-15) + 15); 
+               startMana = startMana - manaOne; 
+               break;
+            }
+            
+            if (StdDraw.isKeyPressed(KeyEvent.VK_2) && startMana >= 20)
+            {
+               startHP = startHP + attackTwo;
+               attackTwo = (int)(Math.random()*(15-35) + 35);
+               startMana = startMana - manaTwo; 
+               break;
+            }
+            if (StdDraw.isKeyPressed(KeyEvent.VK_3) && startMana >= 20)
+            {
+               compstartHP = compstartHP - attackThree; 
+               startMana = startMana - manaThree;
+               attackThree = (int)(Math.random()*(20-25) + 25);
+               break;
+            }
+            if (StdDraw.isKeyPressed(KeyEvent.VK_4) && startMana >= 25)
+            {
+               compstartHP = compstartHP - attackFour; 
+               startMana = startMana - manaFour;
+               attackFour = (int)(Math.random()*(25-30) + 30);
+               break;
+            }
+            if (StdDraw.isKeyPressed(KeyEvent.VK_5))
+            {
+               compstartHP = compstartHP - fatigueAttack;
+               fatigueAttack++; 
+               break;
+            }
+
+         }   
+         if (user.equals("fire"))
+         {
+            
+            if (StdDraw.isKeyPressed(KeyEvent.VK_1) && startMana >= 10)
+            {
+               compstartHP = compstartHP - attackOne;
+               attackOne = (int)(Math.random()*(1-5) + 5); 
+               startMana = startMana - manaOne; 
+               break;
+            }
+            
+            if (StdDraw.isKeyPressed(KeyEvent.VK_2) && startMana >= 15)
+            {
+               compstartHP = compstartHP - attackTwo;
+               attackTwo = (int)(Math.random()*(10-15) + 15);
+               startMana = startMana - manaTwo; 
+               break;
+            }
+            if (StdDraw.isKeyPressed(KeyEvent.VK_3) && startMana >= 20)
+            {
+               compstartHP = compstartHP - attackThree; 
+               startMana = startMana - manaThree;
+               attackThree = (int)(Math.random()*(20-25) + 25);
+               break;
+            }
+            if (StdDraw.isKeyPressed(KeyEvent.VK_4) && startMana >= 80)
+            {
+               compstartHP = compstartHP - attackFour; 
+               startMana = startMana - manaFour;
+               attackFour = (int)(Math.random()*(15-80) + 80);
+               break;
+            }
+            if (StdDraw.isKeyPressed(KeyEvent.VK_5))
+            {
+               compstartHP = compstartHP - fatigueAttack;
+               fatigueAttack++; 
+               break;
+            }
+
+         }
+         if (user.equals("air"))
+         {
+            
+            if (StdDraw.isKeyPressed(KeyEvent.VK_1) && startMana >= 5 && compstartMana >= 10)
+            {
+               compstartMana = compstartMana - attackOne;
+               startMana = startMana + attackOne;
+               attackOne = (int)(Math.random()*(5-10) + 10); 
+               startMana = startMana - manaOne; 
+               break;
+            }
+            
+            if (StdDraw.isKeyPressed(KeyEvent.VK_2) && startMana >= 10 && compstartMana >= 20)
+            {
+               compstartMana = compstartMana - attackTwo;
+               startMana = startMana + attackTwo;
+               attackTwo = (int)(Math.random()*(5-20) + 20);
+               startMana = startMana - manaTwo; 
+               break;
+            }
+            if (StdDraw.isKeyPressed(KeyEvent.VK_3) && startMana >= 40)
+            {
+               compstartHP = compstartHP - attackThree; 
+               startMana = startMana - manaThree;
+               attackThree = (int)(Math.random()*(30-40) + 40);
+               break;
+            }
+            if (StdDraw.isKeyPressed(KeyEvent.VK_4) && startMana >= 20)
+            {
+               compstartHP = compstartHP - attackFour; 
+               startMana = startMana - manaFour;
+               attackFour = attackFour + 5;
+               break;
+            }
+            if (StdDraw.isKeyPressed(KeyEvent.VK_5))
+            {
+               compstartHP = compstartHP - fatigueAttack;
+               fatigueAttack++; 
+               break;
+            }
+
+         }
+         if (user.equals("earth"))
+         {
+            
+            if (StdDraw.isKeyPressed(KeyEvent.VK_1) && startMana >= 10)
+            {
+               compstartHP = compstartHP - attackOne; 
+               startMana = startMana - manaOne;
+               manaOne = (int)(Math.random()*(1-10) + 10); 
+               break;
+            }
+            
+            if (StdDraw.isKeyPressed(KeyEvent.VK_2) && startMana >= 20)
+            {
+               compstartHP = compstartHP - attackTwo;
+               startMana = startMana - manaTwo;
+               manaTwo = (int)(Math.random()*(5-20) + 20); 
+               break;
+            }
+            if (StdDraw.isKeyPressed(KeyEvent.VK_3) && startMana >= 20)
+            {
+               compstartHP = compstartHP - attackThree; 
+               startMana = startMana - manaThree;
+               manaOne = (int)(Math.random()*(10-20) + 20);
+               break;
+            }
+            if (StdDraw.isKeyPressed(KeyEvent.VK_4) && startMana >= 30)
+            {
+               compstartHP = compstartHP - attackFour; 
+               startMana = startMana - manaFour;
+               manaOne = (int)(Math.random()*(10-30) + 30);
+               break;
+            }
+            if (StdDraw.isKeyPressed(KeyEvent.VK_5))
+            {
+               compstartHP = compstartHP - fatigueAttack;
+               fatigueAttack++; 
+               break;
+            }
+
+         }   
+   
+
+      }
+   }
+   //same as playerTurn but for the computers pick
+   static void compTurn()
+   {
+      //has the computer randomly select an ability. This section can be developed further for a more logical AI. 
+      int compAttack = (int)(Math.random()*(1-5) +5);
+      while (true)
+      {
+         if (bot.equals("water"))
+         {
+            
+            if (compAttack == 1 && compstartMana >= 10)
+            {
+               compstartHP = compstartHP + compattackOne; 
+               compstartMana = compstartMana - compmanaOne;
+               compattackOne = (int)(Math.random()*(1-15) + 15);
+               break;
+            }
+            
+            if (compAttack == 2 && compstartMana >= 20)
+            {
+               compstartHP = compstartHP + compattackTwo;
+               compattackTwo = (int)(Math.random()*(15-35) + 35);
+               compstartMana = compstartMana - compmanaTwo;  
+               break;
+            }
+            if (compAttack == 3 && compstartMana >= 20)
+            {
+               startHP = startHP - compattackThree; 
+               compstartMana = compstartMana - compmanaThree;
+               attackThree = (int)(Math.random()*(20-25) + 25);
+               break;
+            }
+            if (compAttack == 4 && compstartMana >= 25 )
+            {
+               startHP = startHP - compattackFour; 
+               compstartMana = compstartMana - compmanaFour;
+               compattackFour = (int)(Math.random()*(25-30) + 30);
+               break;
+            }
+            if (compAttack == 5 || compstartMana < 10)
+            {
+               startHP = startHP - compfatigueAttack; 
+               compfatigueAttack++;
+               break;
+            }
+            //needed for when the computer has less than the required mana
+            else
+            {
+               compAttack = (int)(Math.random()*(1-5) +5);
+            }
+
+         }   
+         if (bot.equals("fire"))
+         {
+            
+            if (compAttack == 1 && compstartMana >= 10)
+            {
+               startHP = startHP - compattackOne;
+               compattackOne = (int)(Math.random()*(1-5) + 5); 
+               compstartMana = compstartMana - compmanaOne; 
+               break;
+            }
+            
+            if (compAttack == 2 && compstartMana >= 15)
+            {
+               startHP = startHP - compattackTwo;
+               compattackTwo = (int)(Math.random()*(10-15) + 15);
+               compstartMana = compstartMana - compmanaTwo; 
+               break;
+            }
+            if (compAttack == 3 && compstartMana >= 20)
+            {
+               startHP = startHP - compattackThree; 
+               compstartMana = compstartMana - compmanaThree;
+               compattackThree = (int)(Math.random()*(20-25) + 25);
+               break;
+            }
+            if (compAttack == 4 && compstartMana >= 80)
+            {
+               startHP = startHP - compattackFour; 
+               compstartMana = compstartMana - compmanaFour;
+               compattackFour = (int)(Math.random()*(15-80) + 80);
+               break;
+            }
+            if (compAttack == 5 || compstartMana < 10)
+            {
+               startHP = startHP - compfatigueAttack;
+               compfatigueAttack++; 
+               break;
+            }
+            else
+            {
+               compAttack = (int)(Math.random()*(1-5) +5);
+            }
+         }   
+         if (bot.equals("earth"))
+         {
+            
+            if (compAttack == 1 && compstartMana >= 10)
+            {
+               startHP = startHP - compattackOne; 
+               compstartMana = compstartMana - compmanaOne;
+               compmanaOne = (int)(Math.random()*(1-10) + 10); 
+               break;
+            }
+            
+            if (compAttack == 2 && compstartMana >= 20)
+            {
+               startHP = startHP - compattackTwo;
+               compstartMana = compstartMana - compmanaTwo;
+               compmanaTwo = (int)(Math.random()*(5-20) + 20); 
+               break;
+            }
+            if (compAttack == 3 && compstartMana >= 20)
+            {
+               startHP = startHP - compattackThree;
+               compstartMana = compstartMana - compmanaThree;
+               compmanaThree = (int)(Math.random()*(10-20) + 20); 
+               break;
+            }
+            if (compAttack == 4 && compstartMana >= 30)
+            {
+               startHP = startHP - compattackFour;
+               compstartMana = compstartMana - compmanaFour;
+               compmanaFour = (int)(Math.random()*(10-30) + 30); 
+               break;
+            }
+            if (compAttack == 5 || compstartMana < 10)
+            {
+               startHP = startHP - compfatigueAttack;
+               compfatigueAttack++; 
+               break;
+            }
+            else
+            {
+               compAttack = (int)(Math.random()*(1-5) +5);
+            }
+        }
+        if (bot.equals("air"))
+        {
+            
+            if (compAttack == 1 && compstartMana >= 5 && startMana >= 10)
+            {
+               startMana = startMana - compattackOne;
+               compstartMana = compstartMana + compattackOne;
+               compattackOne = (int)(Math.random()*(5-10) + 10); 
+               compstartMana = compstartMana - compmanaOne; 
+               break;
+            }
+            
+            if (compAttack == 2 && compstartMana >= 10 && startMana >= 20)
+            {
+               startMana = startMana - compattackTwo;
+               compstartMana = compstartMana + compattackTwo;
+               compattackTwo = (int)(Math.random()*(5-20) + 20);
+               compstartMana = compstartMana - compmanaTwo; 
+               break;
+            }
+            if (compAttack == 3 && compstartMana >= 40)
+            {
+               startHP = startHP - compattackThree; 
+               compstartMana = compstartMana - compmanaThree;
+               compattackThree = (int)(Math.random()*(30-40) + 40);
+               break;
+            }
+            if (compAttack == 4 && compstartMana >= 20)
+            {
+               startHP = startHP - compattackFour; 
+               compstartMana = compstartMana - compmanaFour;
+               compattackFour = attackFour + 5;
+               break;
+            }
+            if (compAttack == 5 || compstartMana < 10)
+            {
+               startHP = startHP - compfatigueAttack;
+               compfatigueAttack++; 
+               break;
+            }
+            else
+            {
+               compAttack = (int)(Math.random()*(1-5) +5);
+            }
+       }
+     }
+   }
+   //Displays the hp and mana of both comp and player. Also provides the turns for the game.
+   static void gameplay()
+   {
+      while (startHP > 0 && compstartHP > 0)
+      {
+         StdDraw.clear();
+         StdDraw.picture(0.5, 0.5, "/" + user + "Fight.png");
+         StdDraw.setPenColor(StdDraw.WHITE);
+         StdDraw.text(.8, 1.0, "comp:  HP " + compstartHP + " Mana:   " + compstartMana);
+         StdDraw.text(.8, .42, "user:  HP " + startHP + " Mana:   " + startMana);
+         StdDraw.show(110);
+         if (startHP > 0)
+         {
+            playersTurn();
+            StdDraw.clear();
+            StdDraw.picture(0.5, 0.5, "/" + user + "Fight.png");
+            StdDraw.setPenColor(StdDraw.WHITE);
+            StdDraw.text(.8, 1.0, "comp:  HP " + compstartHP + " Mana:   " + compstartMana);
+            StdDraw.text(.8, .42, "user:  HP " + startHP + " Mana:   " + startMana);
+            StdDraw.show(110);
+            if (compstartHP > 0)
+            {
+               compTurn();
+               StdDraw.clear();
+               StdDraw.picture(0.5, 0.5, "/" + user + "Fight.png");
+               StdDraw.setPenColor(StdDraw.WHITE);
+               StdDraw.text(.8, 1.0, "comp:  HP " + compstartHP + " Mana:   " + compstartMana);
+               StdDraw.text(.8, .42, "user:  HP " + startHP + " Mana:   " + startMana);
+               StdDraw.show(110);
+            }
+          }
+      }
+   }
+   //This checks who won and displays the correct screen.
+   //You also have the option to restart the game/close game
+   //This section also contains an issue...what is it? 
+   static void endgame()
+   {
+     if (startHP > compstartHP)
+     {
+        StdDraw.show(110);
+        StdDraw.clear();
+        StdDraw.picture(0.5, 0.5, "/win.png");
+        StdDraw.show(110);
+     }
+     if (compstartHP > startHP) 
+     {
+        StdDraw.show(110);
+        StdDraw.clear();
+        StdDraw.picture(0.5, 0.5, "/fail.png");
+        StdDraw.show(110);
+     }
+  
+     while (true)
+     {
+       if (StdDraw.isKeyPressed(KeyEvent.VK_ESCAPE))
+       {
+         System.exit(0);
+       }
+       if (StdDraw.isKeyPressed(KeyEvent.VK_R))
+       {
+         switchtogame = 0;
+         startMenu();
+         gameplay();
+       }
+     }
+   }
+   public static void main(String[] args)
+   {
+      startMenu();
+      gameplay();
+      endgame();
+   }
+}
